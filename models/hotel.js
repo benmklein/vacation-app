@@ -1,0 +1,21 @@
+const mongoose = require("mongoose");
+
+const Schema = mongoose.Schema;
+
+const HotelSchema = new Schema({
+  name: { type: String, required: true, maxLength: 100 },
+  city: { type: String, required: true, maxLength: 100 },
+  country: { type: Schema.Types.ObjectId, ref: "Country", required: true },
+  description: { type: String, required: true, maxLength: 100 },
+  img: { type: String, required: true},
+  
+});
+
+// Virtual for author's URL
+HotelSchema.virtual("url").get(function () {
+  // We don't use an arrow function as we'll need the this object
+  return `/hotel/${this._id}`;
+});
+
+// Export model
+module.exports = mongoose.model("Hotel", HotelSchema);
