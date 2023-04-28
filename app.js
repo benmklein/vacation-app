@@ -12,7 +12,7 @@ const app = express();
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = process.env.MONGO_URL;
+const mongoDB = 'mongodb+srv://admin:123password@cluster0.jckuctu.mongodb.net/vacation-app?retryWrites=true&w=majority';
 
 main().catch((err) => console.log(err));
 async function main() {
