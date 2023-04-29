@@ -8,10 +8,17 @@ const hotelController = require("../controllers/hotelController");
 /* GET home page. */
 router.get('/', hotelroomController.index);
 
-router.get('/hotel/room/:id', hotelroomController.hotelroom_detail);
+router.get('/rooms/:id', hotelroomController.hotelroom_detail);
 
-router.get('/hotel/:id', hotelController.hotel_detail);
+router.get('/hotels/:id', hotelController.hotel_detail);
 
-router.get('/country/:id', countryController.country_detail);
+router.get('/hotels', hotelController.hotel_list);
+
+router.get('/rooms', hotelroomController.hotelroom_list);
+
+router.get('/countries/:id', countryController.country_detail);
+
+router.get('/countries', countryController.country_list);
+
 
 module.exports = router;

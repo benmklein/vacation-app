@@ -15,7 +15,7 @@ exports.index = asyncHandler(async (req, res, next) => {
 
 // Display list of all hotel room.
 exports.hotelroom_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: hotel list");
+  res.send("NOT IMPLEMENTED: hotel room list");
 });
 
 // Display detail page for a specific hotel room.
