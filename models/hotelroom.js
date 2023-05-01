@@ -10,13 +10,14 @@ const HotelRoomSchema = new Schema({
   beds: { type: Number, required: true},
   baths: { type: Number, required: true},
   img: { type: String, required: true},
+  description: { type: String, required: true },
   
 });
 
 // Virtual for author's URL
 HotelRoomSchema.virtual("url").get(function () {
   // We don't use an arrow function as we'll need the this object
-  return `/hotel/room/${this._id}`;
+  return `/rooms/${this._id}`;
 });
 
 // Export model

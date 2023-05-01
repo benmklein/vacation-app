@@ -2,21 +2,44 @@ extends layout
 
 block content
 
-  div(class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-center")
+  div(class="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 items-center justify-center")
 
     each room in hotelroom_list
       div.flex.flex-col.p-4.bg-orange-50.rounded-lg.shadow-lg.text-slate-800
         a(href=room.url)
-          img.w-96.h-64.object-cover(src=room.img, alt="Picture of the room with the name: #{room.name}")
-        p.font-bold #{room.hotel.city},
-          |  #{room.hotel.country.name}
-        
-        div.flex.flex-row
-          a.w-fit.underline.italic.font-semibold.text-slate-700(href=room.url) #{room.name} 
-          p &nbsp;at&nbsp;
-          a(href=room.hotel.url)  #{room.hotel.name}
-        p.text-green-800.font-bold $#{room.price}
-          span.text-slate-900.font-normal  per night
+          img.w-96.h-64.object-cover.shadow-lg.border-4.border-slate-900.box-border(src=room.img, alt="Picture of the room with the name: #{room.name}")
+        div.font-bold.flex.flex-row.justify-between.shadow-lg.p-2
+          div.flex.flex-col.justify-between
+            a.text-2xl.text-slate-950(href=room.hotel.country.url) #{room.hotel.city}, #{room.hotel.country.name}
+            div
+              div.flex.flex-row
+                a.w-fit.underline.italic.font-semibold.text-orange-800(href=room.url) #{room.name}
+                p.font-normal &nbsp;at&nbsp;
+                a(href=room.hotel.url)  #{room.hotel.name}
+              p.text-emerald-800.font-bold $#{room.price}
+                span.text-slate-900.font-normal  per night
+          
+          div.gap-2.flex.flex-col.relative.items-end
+            if room.beds > 1
+              div.bg-purple-200.rounded-full.px-2.py-1.text-purple-800.font-semibold.text-sm.w-fit #{room.beds} beds
+            else if room.beds === 1
+              div.bg-purple-200.rounded-full.px-2.py-1.text-purple-800.font-semibold.text-sm.w-fit #{room.beds} bed
+            else if room.beds === 0
+              div.bg-purple-200.rounded-full.px-2.py-1.text-purple-800.font-semibold.text-sm.w-fit Studio
+              
+            if room.baths > 1
+              div.bg-blue-200.rounded-full.px-2.py-1.text-blue-800.font-semibold.text-sm.w-fit #{room.baths} baths
+            else if room.baths === 1
+              div.bg-blue-200.rounded-full.px-2.py-1.text-blue-800.font-semibold.text-sm.w-fit #{room.baths} bath
+            else if room.baths === 0
+              div.bg-blue-200.rounded-full.px-2.py-1.text-blue-800.font-semibold.text-sm.w-fit No bath
 
+            if room.status === 'Available'
+              div.bg-emerald-200.rounded-full.px-2.py-1.text-emerald-800.font-semibold.text-sm.w-fit Available
+            else if room.status === 'Booked'
+              div.bg-red-200.rounded-full.px-2.py-1.text-red-800.font-semibold.text-base.text-sm.w-fit Booked
+            else if room.status === 'Unavailable'
+              div.bg-gray-200.rounded-full.px-2.py-1.text-gray-800.font-semibold.text-base.text-sm.w-fit Unavailable
+          
     else
-      li There are no books.
+      li There are no rooms.
