@@ -1,23 +1,22 @@
 extends layout
 
 block content
-  p country_list.pug
 
   div(class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-center")
+    
+    for country in country_list
 
-    each room in hotelroom_list
-      div.flex.flex-col.p-4.bg-orange-50.rounded-lg.shadow-lg.text-slate-800
-        a(href=room.url)
-          img.w-96.h-64.object-cover(src=room.img, alt="Picture of the room with the name: #{room.name}")
-        p.font-bold #{room.hotel.city},
-          |  #{room.hotel.country.name}
+      div.flex.flex-col.p-4.bg-orange-50.rounded-lg.shadow-lg.text-slate-800.text-center
+        a(href=country.url)
+          img.w-96.h-64.object-cover(src=country.img, alt="Picture of: #{country.name}")
+        p.font-bold.text-2xl.mb-4 #{country.name}
+        if country.hotelCount == 1
+          p.text-green-700.font-bold #{country.hotelCount} available room
+        else
+          p.text-green-700.font-bold #{country.hotelCount} available rooms
+        if country.sites.length == 1
+          p.text-slate-700 #{country.sites.length} must-see location
+        else
+          p.text-slate-700 #{country.sites.length} must-see locations
         
-        div.flex.flex-row
-          a.w-fit.underline.italic.font-semibold.text-slate-700(href=room.url) #{room.name} 
-          p &nbsp;at&nbsp;
-          a(href=room.hotel.url)  #{room.hotel.name}
-        p.text-green-800.font-bold $#{room.price}
-          span.text-slate-900.font-normal  per night
 
-    else
-      li There are no books.

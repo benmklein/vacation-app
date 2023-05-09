@@ -2,19 +2,19 @@ doctype html
       
 html
   head
-    title InnSight: Find your dream vacation.
+    title Inn Site: Find your dream vacation.
     link(rel='stylesheet', href='/stylesheets/output.css')
     link(rel='icon', href='/images/hotel_logo.png')
   body(class="grid h-full place-items-center bg-no-repeat bg-fixed bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-slate-950 to-slate-700 bg-gradient-to-r")
     
-    div.container.flex.items-center.flex-col.justify-center.max-w-6xl
-      div.w-full.p-4.flex.flex-row.items-center.gap-16
+    div.flex.items-center.flex-col.justify-center
+      div.w-full.p-4.flex.flex-row.items-center.gap-16.max-w-2xl
         div.w-fit.justify-center.items-center.flex.flex-row
           a(href="/") 
             div.flex.flex-col.rounded-full.bg-yellow-200.left-0.w-16.h-16.relative
-              img(src="/images/hotel_logo.png", alt="hotel logo" class="w-24 h-24")
+              img(src="/images/hotel_logo.png", alt="hotel logo" class="w-16 h-16")
           a(href="/") 
-            h1.text-center.text-yellow-50.text-xl.ml-2 InnSight
+            h1.text-center.text-yellow-50.text-xl.ml-4.whitespace-nowrap Inn Site
         div.w-16
         a.text-slate-50.text-lg(href="/countries") Locations
         a.text-slate-50.text-lg(href="/hotels") Hotels

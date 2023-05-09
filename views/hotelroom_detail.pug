@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div(class="flex flex-col items-center justify-center w-full")
+  div(class="flex flex-col items-center justify-center")
     div.flex.flex-col.p-4.bg-orange-50.rounded-lg.shadow-lg.text-slate-800
       a(href=room.url)
         img.w-96.h-64.object-cover.shadow-lg.border-4.border-slate-900.box-border(src=room.img, alt="Picture of the room with the name: #{room.name}")
@@ -37,5 +37,5 @@ block content
             div.bg-red-200.rounded-full.px-2.py-1.text-red-800.font-semibold.text-base.text-sm.w-fit Booked
           else if room.status === 'Unavailable'
             div.bg-gray-200.rounded-full.px-2.py-1.text-gray-800.font-semibold.text-base.text-sm.w-fit Unavailable
-    div(class="flex flex-col p-4 bg-orange-50 rounded-lg shadow-lg text-slate-800 mt-4 w-5/6")
+    div(class="flex flex-col p-8 bg-orange-50 rounded-lg shadow-lg text-slate-800 mt-4 w-3/4 max-w-4xl")
       span.whitespace-break-spaces #{room.description}

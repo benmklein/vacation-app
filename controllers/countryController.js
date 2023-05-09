@@ -1,4 +1,6 @@
 const Country = require("../models/country");
+const HotelRoom = require("../models/hotelroom");
+const Hotel = require("../models/hotel");
 const asyncHandler = require('express-async-handler')
 
 const { body, validationResult } = require("express-validator");
@@ -6,12 +8,43 @@ const { body, validationResult } = require("express-validator");
 
 // Display list of all Countries.
 exports.country_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: country list");
+  
+  //add hotel count to each country
+  const hotelRoomsByCountry = async () => {
+    const countries = await Country.find();
+    const countryList = [];
+  
+    for (const country of countries) {
+      const hotels = await Hotel.find({ country: country._id });
+      const hotelIds = hotels.map(hotel => hotel._id);
+  
+      const hotelCount = await HotelRoom.countDocuments({ hotel: { $in: hotelIds }, status: "Available" });
+  
+      countryList.push({ ...country.toObject(), url: country.url, hotelCount });
+    }
+  
+    return countryList;
+  };
+  
+  const groupedHotelRooms = await hotelRoomsByCountry();
+  
+  res.render("country_list", { title: "Country List", country_list: groupedHotelRooms })
 });
 
 // Display detail page for a specific Country.
 exports.country_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: country detail: ${req.params.id}`);
+  let country = await Country.findById(req.params.id, "name img sites url")
+  
+  country = { ...country.toObject(), url: country.url }
+  
+  
+  const hotels = await Hotel.find({ country: country._id });
+  const hotelIds = hotels.map(hotel => hotel._id);
+
+  const room_list = await HotelRoom.find({ hotel: { $in: hotelIds }, status: "Available" }).populate("hotel");
+  console.log('room_list', room_list)
+
+  res.render("country_detail", { title: "Country List", country, room_list })
 });
 
 // Display country create form on GET.

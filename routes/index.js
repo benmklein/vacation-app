@@ -16,7 +16,7 @@ router.get('/hotels', hotelController.hotel_list);
 
 router.get('/rooms', hotelroomController.hotelroom_list);
 
-router.get('/countries/:id', countryController.country_detail);
+router.get('/country/:id', countryController.country_detail);
 
 router.get('/countries', countryController.country_list);
 

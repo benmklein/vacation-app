@@ -35,7 +35,7 @@ async function main() {
 
 async function hotelCreate(name, city, country, description, img) {
     const hotel = new Hotel({ name, city, country, description, img });
-    console.log(country)
+    console.log(country);
     await hotel.save();
     hotels.push(hotel);
     console.log(`Added hotel: ${name}`);
@@ -49,7 +49,16 @@ async function countryCreate(name, sites, img) {
     console.log(`Added country: ${name}`);
 }
 
-async function hotelRoomCreate(name, hotel, status, price, beds, baths, img, description) {
+async function hotelRoomCreate(
+    name,
+    hotel,
+    status,
+    price,
+    beds,
+    baths,
+    img,
+    description
+) {
     const hotelroom = new HotelRoom({
         name,
         hotel,
@@ -58,7 +67,7 @@ async function hotelRoomCreate(name, hotel, status, price, beds, baths, img, des
         beds,
         baths,
         img,
-        description
+        description,
     });
 
     await hotelroom.save();
@@ -142,13 +151,17 @@ async function createHotelRooms() {
             1,
             1,
             "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-            `The Peregrine at Marriott, New York, USA
+            `Welcome to The Peregrine at Holiday Inn, your luxurious yet affordable oasis in the heart of London, England. For only $119.95 per night, this stylish and contemporary room offers the perfect retreat for both leisure and business travelers alike.
 
-            Price: $119.95 per night
+            The Peregrine features a cozy, plush double bed outfitted with crisp, high-quality linens and soft pillows, ensuring a restful night's sleep after a long day of exploring the city's historic sites or attending business meetings. The room's sleek design and chic furnishings evoke a sense of sophistication while maintaining a warm and inviting atmosphere.
             
-            Availability: Booked
+            This intimate space is equipped with a modern, pristine en-suite bathroom, complete with a refreshing walk-in shower, plush towels, and an array of premium toiletries for your convenience. Additionally, you'll find ample storage for your belongings, as well as a well-lit work desk and a comfortable chair to cater to your productivity needs during your stay.
             
-            Discover an urban sanctuary in the heart of New York City at the Marriott's "The Peregrine" room. For just $119.95 per night, indulge in a cozy retreat featuring 1 comfortable bed and a well-appointed en-suite bathroom. Unwind after a day of exploring the Big Apple in this elegantly designed space, providing all the amenities you need for a perfect stay. Book now and experience the vibrant energy of New York, right at your doorstep.`
+            As a guest of The Peregrine, you'll have access to Holiday Inn's top-notch amenities, including a 24-hour front desk, room service, high-speed Wi-Fi, and a state-of-the-art fitness center. Wake up to a delightful breakfast buffet, featuring an array of delicious options to kickstart your day.
+            
+            The prime location of The Peregrine at Holiday Inn places you in close proximity to iconic London attractions, such as Buckingham Palace, the Tower of London, and the vibrant West End theatre district. With easy access to public transportation, you'll be able to seamlessly navigate the city and make the most of your stay in this vibrant and diverse metropolis.
+            
+            Book now and treat yourself to a memorable experience at The Peregrine at Holiday Inn, where our attentive staff and outstanding amenities will ensure your stay in London is both comfortable and unforgettable.`
         ),
         hotelRoomCreate(
             "The Dove",
@@ -158,174 +171,94 @@ async function createHotelRooms() {
             2,
             2,
             "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
-            `The Dove - Holiday Inn London
+            `Welcome to The Dove, a charming and comfortable retreat nestled in the heart of London, England, at the Holiday Inn. For only $174.95 per night, experience the perfect blend of elegance and coziness in this exceptional hotel room designed to make your stay memorable.
 
-            🌟🌟🌟 (3-Star Comfort)
+            The Dove boasts two luxurious beds, providing ample space for families, friends, or colleagues to unwind after a long day exploring the city. Each bed is adorned with plush pillows and high-quality linens, ensuring a restful night's sleep that leaves you refreshed and ready for your next adventure.
             
-            Price: $174.95 per night
+            Indulge in the convenience of two modern and spacious bathrooms, both equipped with soothing rainfall showers, complimentary toiletries, and soft, fluffy towels. Enjoy the privacy and comfort of having your own personal space to prepare for the day or relax in a warm bath after a day of sightseeing.
             
-            Overview:
+            Staying at The Dove means being just steps away from London's most iconic attractions. Immerse yourself in the rich history and culture of this vibrant city, from the world-renowned museums and galleries to the bustling shopping districts and lively nightlife. At the end of the day, return to the warmth and serenity of your home away from home.
             
-            ✨ Discover London's charm while staying at 'The Dove' room at Holiday Inn London. This cozy, budget-friendly room offers all the essentials for a comfortable stay in the heart of England's bustling capital.
-            
-            Room Features:
-            
-            🔹 Sleeping Arrangements: The Dove is furnished with two comfortable beds, ensuring a restful night's sleep after a day of exploring London.
-            
-            🔹 Bathroom Convenience: Enjoy the convenience of two private baths, complete with complimentary toiletries and fresh towels.
-            
-            Hotel Amenities:
-            
-            🍳 Complimentary Breakfast: Start your day with a delicious, complimentary breakfast at the hotel's on-site restaurant.
-            
-            💼 Business Center: Stay connected and productive with the fully-equipped business center, offering printing and photocopying services.
-            
-            🏋️ Fitness Facility: Keep up with your workout routine at the hotel's modern fitness center, available to all guests.
-            
-            Location & Attractions:
-            
-            📍 Prime Location: Holiday Inn London is situated in a vibrant neighborhood, providing easy access to popular attractions, shopping, and dining options.
-            
-            📍 Nearby Attractions: Explore iconic London sights, such as Buckingham Palace, the Tower of London, and the British Museum, all within easy reach of the hotel.
-            
-            Book 'The Dove' at Holiday Inn London for a convenient and budget-friendly stay in the heart of the city!`
+            The Dove's availability is limited, so book your unforgettable stay at the Holiday Inn today and experience the best that London has to offer. We look forward to welcoming you to your cozy haven in the heart of England's capital.`
         ),
         hotelRoomCreate(
-          "The Peregrine",
-          hotels[1],
-          "Available",
-          119.95,
-          1,
-          1,
-          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-          `
-          The Peregrine - Holiday Inn London
-          
-          🇬🇧 Location: London, England
-          
-          💷 Price: $119.95 per night
-          
-          Room Overview:
-          
-          🛏️ Sleeping Arrangements: 1 cozy bed
-          
-          🛁 Bathroom: 1 private bath
-          
-          📅 Availability: Book now!
-          
-          Description:
-          
-          Welcome to The Peregrine, your home away from home in the heart of London! This charming room at the Holiday Inn offers an affordable yet comfortable retreat for your UK adventure. Enjoy a peaceful night's sleep in a plush bed and freshen up in the private bathroom before exploring the city's iconic attractions. Don't miss out on this excellent value - book The Peregrine today for an unforgettable stay in London!`
-      ),
-      hotelRoomCreate(
-          "The Dove",
-          hotels[1],
-          "Available",
-          174.95,
-          2,
-          2,
-          "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
-          `The Dove - Hilton Paris
+            "The Peregrine",
+            hotels[1],
+            "Available",
+            119.95,
+            1,
+            1,
+            "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            `Welcome to The Peregrine at Hilton, your luxurious escape in the heart of Paris, France. Priced at an unbeatable $119.95 per night, this exquisite hotel room provides the perfect blend of elegance and comfort for an unforgettable Parisian experience.
 
-          🇫🇷🛏️ Charming & Affordable Parisian Escape
+          The Peregrine is a sophisticated retreat designed for the discerning traveler, offering a plush queen-size bed dressed in high-quality linens, ensuring a restful night's sleep after a day spent exploring the City of Light. The spacious en-suite bathroom is fitted with a modern walk-in shower and deluxe amenities to pamper yourself during your stay.
           
-          Price: $174.95 per night
+          As a guest of The Peregrine, you'll enjoy access to Hilton's world-class services and amenities. Indulge in a delicious breakfast at our on-site restaurant or savor a classic French pastry and espresso at the café. For those looking to unwind, our state-of-the-art fitness center and tranquil spa facilities are at your disposal.
           
-          Overview:
+          Conveniently located in the heart of Paris, The Peregrine at Hilton is just a stone's throw away from iconic landmarks such as the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral. Experience the rich history, culture, and gastronomy of Paris, all within walking distance from your hotel room.
           
-          Welcome to 'The Dove,' a delightful and budget-friendly room nestled in the heart of Paris, France. The Hilton Paris offers this cozy retreat, perfect for families or friends seeking a memorable stay in the City of Lights.
+          Book your stay at The Peregrine at Hilton today and immerse yourself in the charm and sophistication of Paris, France. With our exceptional location, unrivaled amenities, and unparalleled service, we promise a memorable experience that will leave you longing for your next visit.`
+        ),
+        hotelRoomCreate(
+            "The Dove",
+            hotels[1],
+            "Available",
+            174.95,
+            2,
+            2,
+            "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            `
+          Welcome to The Dove, an exquisite retreat nestled in the heart of Paris, France, at the renowned Hilton hotel. For only $174.95 per night, experience the charm and elegance of the City of Lights, while indulging in luxurious comfort and world-class amenities.
           
-          Room Features:
+          Our spacious and beautifully designed room features two plush beds adorned with fine linens, ensuring a peaceful night's sleep after a day of exploring the romantic streets of Paris. The room's sophisticated decor, with a touch of Parisian chic, perfectly captures the essence of the city's timeless allure.
           
-          🔹 Comfortable Sleep: The Dove features two comfortable beds, ensuring a restful night after a day of exploring Paris.
+          The Dove offers two pristine, modern bathrooms equipped with high-end toiletries and soft, fluffy towels. Unwind and rejuvenate in the sumptuous walk-in showers or indulge in a soothing soak in the stylish bathtubs, adding an extra layer of relaxation to your stay.
           
-          🔹 Convenient Baths: Enjoy the convenience of two private bathrooms, each equipped with modern amenities and plush towels.
+          During your visit, take advantage of the Hilton's outstanding facilities, including a state-of-the-art fitness center, an indulgent spa, and a selection of exquisite on-site dining options. Our dedicated staff will be at your service 24/7, ensuring a seamless and memorable experience from check-in to check-out.
           
-          Hotel Amenities:
+          Conveniently located, The Dove provides easy access to Paris's iconic attractions, such as the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral. Immerse yourself in the city's vibrant café culture, indulge in gourmet cuisine, or take a leisurely stroll along the picturesque Seine River.
           
-          🔹 On-Site Dining: Indulge in delicious French cuisine at the hotel's restaurant or unwind with a drink at the bar.
-          
-          🔹 Fitness Center: Maintain your workout routine with complimentary access to the well-equipped fitness center.
-          
-          Location & Attractions:
-          
-          🔹 Prime Paris Location: The Hilton Paris boasts a central location, providing easy access to iconic attractions, shopping, and dining.
-          
-          🔹 Nearby Attractions: Discover nearby landmarks, such as the Eiffel Tower, Louvre Museum, Notre-Dame Cathedral, and Champs-Élysées.
-          
-          Book 'The Dove' at the Hilton Paris for an affordable, comfortable, and unforgettable Parisian experience!`
-      ),
-      hotelRoomCreate(
-        "The Crow",
-        hotels[1],
-        "Available",
-        99.99,
-        1,
-        1,
-        "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
-        `The Crow - Hilton Paris
+          Book your stay at The Dove now and experience the magic of Paris in unmatched style and comfort. Your unforgettable Parisian adventure awaits.`
+        ),
+        hotelRoomCreate(
+            "The Crow",
+            hotels[1],
+            "Available",
+            99.99,
+            1,
+            1,
+            "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
+            `Welcome to The Crow at Hilton, your charming and affordable home away from home in the heart of romantic Paris, France. For only $99.99 per night, indulge in the perfect blend of comfort, style, and convenience at our luxurious property.
 
-        🌟🌟🌟 (3-Star Comfort)
+        As you step into this exquisite room, you'll immediately notice the chic Parisian design and warm ambiance, making it the ideal retreat after a day of exploring the enchanting city. The comfortable queen-sized bed, adorned with plush bedding, invites you to unwind and enjoy a peaceful night's sleep. Soft lighting and tasteful artwork complete the room's calming atmosphere.
         
-        Overview:
+        In the well-appointed private bathroom, you'll find a modern walk-in shower, stocked with complimentary toiletries and soft, fresh towels. Start your morning with a revitalizing shower or unwind after a day in the City of Light with a soothing bath.
         
-        ✨ Discover an affordable and cozy stay in the heart of Paris with 'The Crow' room at Hilton Paris. This charming retreat offers all the essentials for a memorable stay in the City of Lights, without breaking the bank.
+        Stay connected with complimentary high-speed Wi-Fi and never miss a beat as you make your plans to explore the iconic landmarks, charming cafés, and world-class shopping that Paris has to offer. With a convenient workspace, you'll find it easy to catch up on emails or plan your next day's adventures.
         
-        Room Features:
+        Located just minutes away from the famous Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral, The Crow at Hilton provides the perfect base for discovering the wonders of Paris. Our friendly and attentive staff are dedicated to ensuring you have a memorable and enjoyable stay, offering personalized recommendations and assistance with booking tours, tickets, and restaurant reservations.
         
-        🔹 Cozy Sleeping: Relax in a comfortable queen-size bed, complete with crisp linens and plush pillows for a restful night's sleep.
-        
-        🔹 Private Bathroom: Refresh in the en-suite bathroom, featuring a walk-in shower and essential bath amenities.
-        
-        Rate & Availability:
-        
-        💰 Budget-Friendly: Unbeatable value at just $99.99 per night.
-        
-        📅 Availability: Book now for your desired dates.
-        
-        Location & Attractions:
-        
-        📍 Prime Location: Hilton Paris is conveniently situated, providing easy access to iconic attractions, cafes, and boutiques.
-        
-        📍 Nearby Attractions: Explore famous landmarks, including the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral.
-        
-        Choose 'The Crow' at Hilton Paris for an incredible stay in the enchanting French capital!`
-    ),
-      hotelRoomCreate(
-        "The Peregrine",
-        hotels[2],
-        "Available",
-        119.95,
-        1,
-        1,
-        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        `🌟🌟🌟🌟 (4-Star Comfort)
+        Book your stay now at The Crow at Hilton and experience the magic of Paris at an unbeatable price. We look forward to hosting you and making your Parisian dreams come true!`
+        ),
+        hotelRoomCreate(
+            "The Peregrine",
+            hotels[2],
+            "Available",
+            119.95,
+            1,
+            1,
+            "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            `Welcome to The Peregrine at Marriott, your ultimate urban oasis in the heart of New York City! For just $119.95 per night, experience the perfect blend of comfort and style in our thoughtfully designed room, featuring a luxurious king-sized bed and a pristine en-suite bathroom.
 
-        Overview:
+        As you step into your private sanctuary, you'll be greeted with a modern design that captures the essence of New York's vibrant energy. The floor-to-ceiling windows offer breathtaking views of the city's iconic skyline, allowing you to bask in the city's mesmerizing beauty right from the comfort of your room.
         
-        ✨ Discover the charm and elegance of Paris at the Hilton, with our delightful 'The Peregrine' room. This cozy and stylish space offers a perfect retreat in the City of Love, ensuring a memorable stay at an affordable price.
+        In addition to the comfortable king-sized bed, our room features plush bedding, a selection of soft and firm pillows, and high-quality linens to ensure a restful night's sleep. The sleek en-suite bathroom is equipped with a rainfall shower, premium toiletries, and soft, fluffy towels to make your stay feel like a true retreat.
         
-        Room Features:
+        Convenience is key, and our room is designed with your needs in mind. Enjoy amenities such as a flat-screen TV with cable channels, high-speed Wi-Fi, a mini-fridge, and a coffee maker. Stay productive with a dedicated workspace, complete with a comfortable chair and ample lighting.
         
-        🔹 Comfortable Bedding: Relax in the inviting queen-size bed, complete with premium linens and plush pillows.
+        When you book your stay at The Peregrine at Marriott, you're not just reserving a room; you're unlocking access to a world of exceptional amenities and services. Indulge in our on-site restaurants, unwind at our sophisticated bar, or stay active in our state-of-the-art fitness center. Our attentive staff is always on hand to ensure your stay is unforgettable.
         
-        🔹 Ensuite Bathroom: Enjoy the convenience of a private bathroom, equipped with a shower/tub combination and luxury toiletries.
-        
-        Price & Availability:
-        
-        💰 Great Value: Just $119.95 per night for an unforgettable Parisian experience.
-        
-        ❗ Status: Currently booked. Please check availability for alternative dates.
-        
-        Location & Attractions:
-        
-        📍 Prime Location: Hilton Paris is situated in a vibrant neighborhood, providing easy access to popular attractions, chic boutiques, and delectable dining.
-        
-        📍 Nearby Attractions: Explore iconic landmarks, such as the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral, just a short distance away.
-        
-        Book your stay in 'The Peregrine' at the Hilton Paris and immerse yourself in the enchanting allure of Paris, France!`
-    ),
-    
+        Don't miss your chance to experience the perfect blend of luxury and comfort in the heart of New York City. Reserve your room at The Peregrine at Marriott today!`
+        ),
     ]);
 }
-

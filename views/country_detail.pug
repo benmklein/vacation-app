@@ -1,23 +1,52 @@
 extends layout
 
 block content
-  p country_detail.pug
 
-  div(class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-center")
+  div(class="items-center justify-center")
+    
 
-    each room in hotelroom_list
-      div.flex.flex-col.p-4.bg-orange-50.rounded-lg.shadow-lg.text-slate-800
-        a(href=room.url)
-          img.w-96.h-64.object-cover(src=room.img, alt="Picture of the room with the name: #{room.name}")
-        p.font-bold #{room.hotel.city},
-          |  #{room.hotel.country.name}
-        
-        div.flex.flex-row
-          a.w-fit.underline.italic.font-semibold.text-slate-700(href=room.url) #{room.name} 
-          p &nbsp;at&nbsp;
-          a(href=room.hotel.url)  #{room.hotel.name}
-        p.text-green-800.font-bold $#{room.price}
-          span.text-slate-900.font-normal  per night
+    div.flex.flex-col.p-4.bg-orange-50.rounded-lg.shadow-lg.text-slate-800.text-center.mb-4
+      a(href=country.url)
+        img.max-w-3xl.max-h-2xl.object-cover(src=country.img, alt="Picture of  #{country.name}")
+      p.font-bold.text-2xl.mb-4 #{country.name}
+  
+  div(class=" bg-slate-200 text-white text-center p-4 rounded-lg shadow-lg mb-4")
+    h1.text-slate-800.font-bold.mb-8.text-3xl Available Rooms:
+    
+    div(class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-center")
+      for room in room_list
+        div.flex.flex-col.p-4.bg-orange-50.rounded-lg.shadow-lg.text-slate-800
+          a(href=room.url)
+            img.w-96.h-64.object-cover.shadow-lg.border-4.border-slate-900.box-border(src=room.img, alt="Picture of the room with the name: #{room.name}")
+          div.font-bold.flex.flex-row.justify-between.shadow-lg.p-2
+            div.flex.flex-col.justify-around
+              div.flex.flex-row.text-lg
+                a.w-fit.underline.italic.font-semibold.text-orange-800(href=room.url) #{room.name}
+                p.font-normal &nbsp;at&nbsp;
+                a(href=room.hotel.url)  #{room.hotel.name}
+              p.text-emerald-800.font-bold $#{room.price}
+                  span.text-slate-900.font-normal  per night
+            
+            div.gap-2.flex.flex-col.relative.items-end
+              if room.beds > 1
+                div.bg-purple-200.rounded-full.px-2.py-1.text-purple-800.font-semibold.text-sm.w-fit #{room.beds} beds
+              else if room.beds === 1
+                div.bg-purple-200.rounded-full.px-2.py-1.text-purple-800.font-semibold.text-sm.w-fit #{room.beds} bed
+              else if room.beds === 0
+                div.bg-purple-200.rounded-full.px-2.py-1.text-purple-800.font-semibold.text-sm.w-fit Studio
+                
+              if room.baths > 1
+                div.bg-blue-200.rounded-full.px-2.py-1.text-blue-800.font-semibold.text-sm.w-fit #{room.baths} baths
+              else if room.baths === 1
+                div.bg-blue-200.rounded-full.px-2.py-1.text-blue-800.font-semibold.text-sm.w-fit #{room.baths} bath
+              else if room.baths === 0
+                div.bg-blue-200.rounded-full.px-2.py-1.text-blue-800.font-semibold.text-sm.w-fit No bath
 
-    else
-      li There are no books.
+              if room.status === 'Available'
+                div.bg-emerald-200.rounded-full.px-2.py-1.text-emerald-800.font-semibold.text-sm.w-fit Available
+              else if room.status === 'Booked'
+                div.bg-red-200.rounded-full.px-2.py-1.text-red-800.font-semibold.text-base.text-sm.w-fit Booked
+              else if room.status === 'Unavailable'
+                div.bg-gray-200.rounded-full.px-2.py-1.text-gray-800.font-semibold.text-base.text-sm.w-fit Unavailable
+      else 
+        p.font-bold.text-slate-800 No available rooms.
